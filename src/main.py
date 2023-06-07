@@ -1,9 +1,9 @@
 import sys
 import platform
-from PySide2 import QtCore, QtGui
-from PySide2.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
-from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
-from PySide2.QtWidgets import *
+from PyQt5 import QtCore, QtGui
+from PyQt5.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
+from PyQt5.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
+from PyQt5.QtWidgets import *
 
 # GUI FILE
 from app_modules import *
@@ -335,6 +335,7 @@ if __name__ == "__main__":
     QtGui.QFontDatabase.addApplicationFont('./ui/fonts/segoeui.ttf')
     QtGui.QFontDatabase.addApplicationFont('./ui/fonts/Satoshi-Light.ttf')
     QtGui.QFontDatabase.addApplicationFont('./ui/fonts/Satoshi-Regular.ttf')
-    app.setFont("Satoshi Regular", "*") # type: ignore
+    font = QFont("Satoshi Regular")
+    app.setFont(font, "*") # type: ignore
     window = MainWindow()
     sys.exit(app.exec_())
