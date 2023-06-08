@@ -44,6 +44,31 @@ def Simulacion():
 
     #TODO: Hacer segundo while para adelante
 
+    u = Lehmer(random.randint(1, 10000) , random.randint(1, 10))
+    PL=u*100
+    MM=0
+    if u >= 0.35:
+        MM=17
+        if MM > 16:
+            TL="'LLUVIA MUY ABUNDANTE'"
+        elif MM>7:
+            TL="'LLUVIA INTENSA'"
+        else:
+            TL="'LLUVIA LIGERA'"
+    else:
+        TL="'NO LLUEVE'"
+    
+    u = Lehmer(random.randint(1, 10000) , random.randint(1, 10))
+    PH=u*100
+
+    if u >= 0.20:
+        #HAY HURACAN
+        print("Tipó de Lluvia: " + str(TL) + "Probabilidad de lluvias:: " + str(PL) +"Probabilidad de huracanes: " + str(PH) +"Perdidas Potenciales por Cierre: " + str(GT) + "Se sugiere cerrar el parque")
+    else:
+        #NO HAY HURACAN
+        print("Tipó de Lluvia: " + str(TL) + "Probabilidad de lluvias:: " + str(PL) +"Probabilidad de huracanes: " + str(PH) +"Perdidas Potenciales por Cierre: " + str(GT))
+    
+
 def Lehmer(semilla = 0, t = 0):
 
     listaNrosAleatorios = []
@@ -104,5 +129,5 @@ def Lehmer(semilla = 0, t = 0):
         return []
 
 if __name__ == "__main__":
-    # Simulacion()
-    pass
+    Simulacion()
+    # pass
