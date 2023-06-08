@@ -14,13 +14,8 @@ Simulador de eventos metereológicos e impactos financieros en el parque Animal 
 ### ⬇ MODULOS / MODULES:
 
 > ```sh
-> pip install pyside2==5.15.2 matplotlib scipy numpy pyqtgraph
+> pip install PyQt5
 > ```
-> PySide2 y PyQt5 en la versión 5.15.1 **causan problemas** debido a sus actualizaciones.  
-> Utilizar Python 3.9.12 con PySide.  
-> 
-> > PySide2 and PyQt5 in version 5.15.1 **are causing problems** due to several updates in process.  
-> > Use Python 3.9.12 with PySide2. 
 > 
 
 ### ⚙ EJECUTAR / RUN:
