@@ -15,7 +15,7 @@ def Simulacion():
 
     i = 0 
     GT = 0
-    while i <= P:
+    while i <= 2:
         u = Lehmer(9999, 9)
         if u >= 0.95:
             # print(">= 0.95")
@@ -99,5 +99,6 @@ def Lehmer(semilla = 0, t = 0):
         print("Nota: Se debe ingresar un valor de tipo numerico")
         return []
 
-
-Simulacion()
+if __name__ == "__main__":
+    # Simulacion()
+    pass

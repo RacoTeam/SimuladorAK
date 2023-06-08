@@ -342,6 +342,7 @@ class MainWindow(QMainWindow):
 # Todo lo que se declaro antes se ejecuta aqui abajo
 
 if __name__ == "__main__":
+    simu.Simulacion()
     app = QApplication(sys.argv)
     QtGui.QFontDatabase.addApplicationFont('./ui/fonts/Satoshi-Black.ttf')
     QtGui.QFontDatabase.addApplicationFont('./ui/fonts/segoeui.ttf')
