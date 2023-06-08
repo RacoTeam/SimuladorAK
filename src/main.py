@@ -9,8 +9,11 @@ from PyQt5.QtWidgets import *
 from app_modules import *
 
 # SETTINGS FILE MANAGER
-import json
-from pathlib import Path
+# import json
+# from pathlib import Path
+
+# Simulacion
+import simulacion.simulacion as simu
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -321,6 +324,15 @@ class MainWindow(QMainWindow):
     ## END ==> APP EVENTS
     ############################## ---/--/--- ##############################
 
+    ########################################################################
+    ## START ==> SIMULACION
+    ############################## ---/--/--- ##############################
+
+    
+
+    ########################################################################
+    ## END ==> SIMULACION
+    ############################## ---/--/--- ##############################
 # ------------------------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------------------------
 # Hasta aqui llega

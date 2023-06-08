@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'GUI_BASE.ui'
+# Form implementation generated from reading ui file './ui/GUI_BASE.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.9
 #
@@ -2991,7 +2991,7 @@ class Ui_MainWindow(object):
         self.label_credits.setText(_translate("MainWindow", "Desarrollado por: Lucas Depetris, Santiago Figueroa, Emanuel Haro y Maribel Masucci"))
         self.label_version.setText(_translate("MainWindow", "v1.0"))
 
-import ui.files_rc
+from . import files_rc
 
 
 if __name__ == "__main__":
