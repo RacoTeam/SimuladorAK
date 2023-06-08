@@ -7,31 +7,32 @@
 import sys
 import math
 import msvcrt
+import random
 
 def Simulacion():
     dias = 31
-    u = Lehmer(2546, 5)
+    u = Lehmer(random.randint(1, 10000) , random.randint(1, 10))
     P = 20000 + 10000 * u
 
     i = 0 
     GT = 0
-    while i <= 2:
-        u = Lehmer(9999, 9)
+    while i <= P:
+        u = Lehmer(random.randint(1, 10000) , random.randint(1, 10))
         if u >= 0.95:
             # print(">= 0.95")
-            u = Lehmer(232,4)
+            u = Lehmer(random.randint(1, 10000) , random.randint(1, 10))
             G = 100 + 400 * u
         elif u >= 0.75:
             # print("0.75 <= u < 0.95")
-            u = Lehmer(232,4)
+            u = Lehmer(random.randint(1, 10000) , random.randint(1, 10))
             G = 30 + 70 * u
         elif u >= 0.15:
             # print("0.15 <= u < 0.75")
-            u = Lehmer(232,4)
+            u = Lehmer(random.randint(1, 10000) , random.randint(1, 10))
             G = 13 + 17 * u
         else:
             # print("< 0.15")
-            u = Lehmer(232,4)
+            u = Lehmer(random.randint(1, 10000) , random.randint(1, 10))
             G = 0 + 13 * u
 
         # print("u: " + str(u))
@@ -81,7 +82,10 @@ def Lehmer(semilla = 0, t = 0):
                 print("Se guardará hasta el número u" + str(i))
                 print("\nPresione una tecla para continuar...")
                 msvcrt.getch()
-                return listaNrosAleatorios
+                if i == 0:
+                    return random.random()
+                else:
+                    return listaNrosAleatorios[0]
             concatenar = "0."+str(ni)
             nroAleatorio = float(concatenar)
             listaNrosAleatorios.append(nroAleatorio)

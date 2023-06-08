@@ -3,7 +3,7 @@ import platform
 from PyQt5 import QtCore, QtGui
 from PyQt5.QtCore import (QCoreApplication, QPropertyAnimation, QDate, QDateTime, QMetaObject, QObject, QPoint, QRect, QSize, QTime, QUrl, Qt, QEvent)
 from PyQt5.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont, QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter, QPixmap, QRadialGradient)
-from PyQt5.QtWidgets import *
+from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QSizePolicy, QLabel, QGraphicsDropShadowEffect, QSizeGrip
 
 # GUI FILE
 from app_modules import *
@@ -83,13 +83,13 @@ class MainWindow(QMainWindow):
                 UIFunctions.maximize_restore(self)
 
             # MOVE WINDOW
-            if event.buttons() == Qt.LeftButton:
+            if event.buttons() == Qt.LeftButton: # type: ignore
                 self.move(self.pos() + event.globalPos() - self.dragPos)
                 self.dragPos = event.globalPos()
                 event.accept()
 
         # WIDGET TO MOVE
-        self.ui.frame_label_top_btns.mouseMoveEvent = moveWindow
+        self.ui.frame_label_top_btns.mouseMoveEvent = moveWindow # type: ignore
         ## ==> END ##
 
         ## ==> LOAD DEFINITIONS
@@ -105,46 +105,6 @@ class MainWindow(QMainWindow):
         ## START - CONNECTORS // Conectan botones, deslizadores y entradas con funciones (lambda) y acciones
         ############################## ---/--/--- ##############################
 
-        # # ASK MODULATION CONNECTORS
-        # self.ui.messageInputASK.textChanged.connect(lambda: self.modulateASK())
-        # self.ui.carrierFreqInputASK.valueChanged.connect(lambda: self.modulateASK())
-        # self.ui.clearBtnASK.clicked.connect(lambda: self.clearASK())
-        # # ASK ANIMATION CONNECTORS
-        # self.ui.modulateBtnASK.clicked.connect(lambda: self.animateModulation("ask"))
-        # self.ui.Btn_pauseASK.clicked.connect(lambda: self.animASK.switchPause())
-        # # ASK PLOT CONNECTORS
-        # self.ui.Btn_antialiasASK.clicked.connect(lambda: self.animASK.setAntialising(self.ui.Btn_antialiasASK.isChecked()))
-        # self.ui.Btn_autoajustadoASK.clicked.connect(lambda: self.animASK.adjustPlot())
-        # self.ui.velocidadInputASK.valueChanged.connect(lambda: self.animASK.speedChanged())
-        # self.ui.samplesInputASK.valueChanged.connect(lambda: self.animASK.samplesChanged())
-
-        # # FSK MODULATION CONNECTORS
-        # self.ui.messageInputFSK.textChanged.connect(lambda: self.modulateFSK())
-        # self.ui.carrierFreq1InputFSK.valueChanged.connect(lambda: self.modulateFSK())
-        # self.ui.carrierFreq2InputFSK.valueChanged.connect(lambda: self.modulateFSK())
-        # self.ui.clearBtnFSK.clicked.connect(lambda: self.clearFSK())
-        # # FSK ANIMATION CONNECTORS
-        # self.ui.modulateBtnFSK.clicked.connect(lambda: self.animateModulation("fsk"))
-        # self.ui.Btn_pauseFSK.clicked.connect(lambda: self.animFSK.switchPause())
-        # # FSK PLOT CONNECTORS
-        # self.ui.Btn_antialiasFSK.clicked.connect(lambda: self.animFSK.setAntialising(self.ui.Btn_antialiasFSK.isChecked()))
-        # self.ui.Btn_autoajustadoFSK.clicked.connect(lambda: self.animFSK.adjustPlot())
-        # self.ui.velocidadInputFSK.valueChanged.connect(lambda: self.animFSK.speedChanged())
-        # self.ui.samplesInputFSK.valueChanged.connect(lambda: self.animFSK.samplesChanged())
-
-        # # PSK MODULATION CONNECTORS
-        # self.ui.messageInputPSK.textChanged.connect(lambda: self.modulatePSK())
-        # self.ui.carrierFreqInputPSK.valueChanged.connect(lambda: self.modulatePSK())
-        # self.ui.clearBtnPSK.clicked.connect(lambda: self.clearPSK())
-        # # PSK ANIMATION CONNECTORS
-        # self.ui.modulateBtnPSK.clicked.connect(lambda: self.animateModulation("psk"))
-        # self.ui.Btn_pausePSK.clicked.connect(lambda: self.animPSK.switchPause())
-        # # PSK PLOT CONNECTORS
-        # self.ui.Btn_antialiasPSK.clicked.connect(lambda: self.animPSK.setAntialising(self.ui.Btn_antialiasPSK.isChecked()))
-        # self.ui.Btn_autoajustadoPSK.clicked.connect(lambda: self.animPSK.adjustPlot())
-        # self.ui.velocidadInputPSK.valueChanged.connect(lambda: self.animPSK.speedChanged())
-        # self.ui.samplesInputPSK.valueChanged.connect(lambda: self.animPSK.samplesChanged())
-
         # self.ui.Btn_helpASK.clicked.connect(lambda: self.helpPage("ask"))
         # self.ui.Btn_helpFSK.clicked.connect(lambda: self.helpPage("fsk"))
         # self.ui.Btn_helpPSK.clicked.connect(lambda: self.helpPage("psk"))
@@ -152,6 +112,7 @@ class MainWindow(QMainWindow):
         # self.ui.Btn_helpMain.clicked.connect(lambda: self.helpPage("main"))
 
         self.ui.BtnMenuSimu.clicked.connect(self.Button)
+        self.ui.BtnCalcular.clicked.connect(simu.Simulacion)
         # self.ui.Btn_FSK.clicked.connect(self.Button)
         # self.ui.Btn_PSK.clicked.connect(self.Button)
         
@@ -288,7 +249,7 @@ class MainWindow(QMainWindow):
     ## EVENT ==> MOUSE DOUBLE CLICK
     ########################################################################
     def eventFilter(self, watched, event):
-        if watched == self.le and event.type() == QtCore.QEvent.MouseButtonDblClick:
+        if watched == self.le and event.type() == QtCore.QEvent.MouseButtonDblClick: # type: ignore
             print("pos: ", event.pos())
     ## ==> END ##
 
@@ -296,11 +257,11 @@ class MainWindow(QMainWindow):
     ########################################################################
     def mousePressEvent(self, event):
         self.dragPos = event.globalPos()
-        if event.buttons() == Qt.LeftButton:
+        if event.buttons() == Qt.LeftButton: # type: ignore
             print('Mouse click: LEFT CLICK')
-        if event.buttons() == Qt.RightButton:
+        if event.buttons() == Qt.RightButton: # type: ignore
             print('Mouse click: RIGHT CLICK')
-        if event.buttons() == Qt.MidButton:
+        if event.buttons() == Qt.MidButton: # type: ignore
             print('Mouse click: MIDDLE BUTTON')
     ## ==> END ##
 
@@ -342,7 +303,6 @@ class MainWindow(QMainWindow):
 # Todo lo que se declaro antes se ejecuta aqui abajo
 
 if __name__ == "__main__":
-    simu.Simulacion()
     app = QApplication(sys.argv)
     QtGui.QFontDatabase.addApplicationFont('./ui/fonts/Satoshi-Black.ttf')
     QtGui.QFontDatabase.addApplicationFont('./ui/fonts/segoeui.ttf')
