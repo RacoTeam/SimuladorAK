@@ -58,9 +58,11 @@ class MainWindow(QMainWindow):
         UIFunctions.addNewMenu(self, "Inicio", "BtnBarHome", "url(:/16x16/icons/16x16/cil-home.png)", True)
         UIFunctions.addNewMenu(self, "Simular", "BtnBarSimu", "url(:/16x16/icons/16x16/cil-3d.png)", True)
         # UIFunctions.addNewMenu(self, "Ajustes", "BtnBarAjustes", "url(:/16x16/icons/16x16/cil-equalizer.png)", False)
+        UIFunctions.addNewMenu(self, "Tema", "BtnBarTema", "url(:/16x16/icons/16x16/cil-lightbulb.png)", False)
         ## ==> END ##
 
         # START MENU => SELECTION
+        UIFunctions.themeSwitcher(self, self.ui.frame_left_menu.findChild(QPushButton, "BtnBarTema"), "ak")
         UIFunctions.selectStandardMenu(self, "BtnBarHome")
         UIFunctions.labelPage(self, "Inicio")
         ## ==> END ##
@@ -112,7 +114,8 @@ class MainWindow(QMainWindow):
         # self.ui.Btn_helpMain.clicked.connect(lambda: self.helpPage("main"))
 
         self.ui.BtnMenuSimu.clicked.connect(self.Button)
-        self.ui.BtnCalcular.clicked.connect(simu.Simulacion)
+        self.ui.BtnSimular.clicked.connect(self.generarSimu)
+        self.ui.calendarWidget.clicked.connect(lambda: self.ui.dia_label.setText("Día " + self.ui.calendarWidget.selectedDate().toString("dd/MM/yyyy")))
         # self.ui.Btn_FSK.clicked.connect(self.Button)
         # self.ui.Btn_PSK.clicked.connect(self.Button)
         
@@ -146,24 +149,33 @@ class MainWindow(QMainWindow):
         # PAGE HOME
         if btnWidget.objectName() == "BtnBarHome":
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_home)
+
             UIFunctions.labelPage(self, "INICIO")
             UIFunctions.labelDescription(self, 'Seleccione una opción')
             
             UIFunctions.resetStyle(self, "BtnBarHome")
             UIFunctions.selectStandardMenu(self, "BtnBarHome")
-
-            UIFunctions.themeSwitcher(self, "animalkingdom")
+            
+            self.ui.frame_content.setStyleSheet(self.ui.frame_content.styleSheet().replace('treeak.png', 'expeve.png'))
 
         # PAGE SIMULAR
         if btnWidget.objectName() == "BtnBarSimu" or btnWidget.objectName() == "BtnMenuSimu":
             self.ui.stackedWidget.setCurrentWidget(self.ui.page_simular)
+
             UIFunctions.labelPage(self, "SIMULACIÓN")
             UIFunctions.labelDescription(self, 'Seleccione una fecha y presione Simular para continuar')
             
             UIFunctions.resetStyle(self, "BtnBarSimu")
             UIFunctions.selectStandardMenu(self, "BtnBarSimu")
-            
-            UIFunctions.themeSwitcher(self)
+
+            self.ui.frame_content.setStyleSheet(self.ui.frame_content.styleSheet().replace('expeve.png', 'treeak.png'))
+        
+        # PAGE THEME
+        if btnWidget.objectName() == "BtnBarTema":
+            if UIFunctions.theme == "default":
+                UIFunctions.themeSwitcher(self, btnWidget, "ak")
+            else: 
+                UIFunctions.themeSwitcher(self, btnWidget, "default")
 
         # PAGE AJUSTES
         if btnWidget.objectName() == "BtnBarAjustes":
@@ -180,71 +192,6 @@ class MainWindow(QMainWindow):
     ########################################################################
     ## START ==> APP EVENTS // Son funciones para probar la aplicacion y mostrar en terminal las entradas
     ########################################################################
-
-    ## EVENT ==> CHANGE SETTINGS
-    ########################################################################
-    #TODO: SAVE ONLY CHANGED
-    # def settingsChanged(self, inputMax: QSpinBox, inputMin: QSpinBox, slider: QSlider, input: QSpinBox, labelMax: QLabel, labelMin: QLabel):
-    #     newMax = inputMax.value()
-    #     newMin = inputMin.value()
-    #     if (newMax - newMin) > 0:
-    #         slider.setMaximum(newMax)
-    #         input.setMaximum(newMax)
-    #         slider.setMinimum(newMin)
-    #         input.setMinimum(newMin)
-    #         labelMax.setText("{0} Hz".format(newMax))
-    #         labelMin.setText("{0} Hz".format(newMin))
-    #         inputMax.setStyleSheet(Style.style_spinbox_ok)
-    #         inputMin.setStyleSheet(Style.style_spinbox_ok)
-    #         self.saveSettings()
-    #     else:
-    #         inputMax.setStyleSheet(Style.style_spinbox_error)
-    #         inputMin.setStyleSheet(Style.style_spinbox_error)
-    #         # print("No se puede cambiar: MaxAct={0} MaxIng={1}".format())
-
-    # def saveSettings(self):
-    #     print("Saving")
-    #     settings_json = {'maxASK' : self.ui.maxCarrierASK.value(),
-    #                 'minASK' : self.ui.minCarrierASK.value(),
-    #                 'maxFSK1' : self.ui.maxCarrierFSK1.value(),
-    #                 'minFSK1' : self.ui.minCarrierFSK1.value(),
-    #                 'maxFSK2' : self.ui.maxCarrierFSK2.value(),
-    #                 'minFSK2' : self.ui.minCarrierFSK2.value(),
-    #                 'maxPSK' : self.ui.maxCarrierPSK.value(),
-    #                 'minPSK' : self.ui.minCarrierPSK.value()
-    #                 }
-    #     with open('settingSIGMA.json','w+') as fp:
-    #         fp.seek(0)
-    #         json.dump(settings_json, fp)#, indent=4)
-    #         # fp.write(json.dumps(settings_json))
-
-    # def loadSettings(self):
-    #     settingsFile = "./settingSIGMA.json"
-    #     path = Path(settingsFile)
-    #     if path.is_file():
-    #         print("File Exists")
-    #         if path.stat().st_size != 0:
-    #             print("Loading File...")
-    #             with open(settingsFile,'r') as json_file:
-    #                 settings_json = json.load(json_file)
-
-    #             self.ui.maxCarrierASK.setValue(settings_json["maxASK"])
-    #             self.ui.minCarrierASK.setValue(settings_json["minASK"])
-    #             self.ui.maxCarrierFSK1.setValue(settings_json["maxFSK1"])
-    #             self.ui.minCarrierFSK1.setValue(settings_json["minFSK1"])
-    #             self.ui.maxCarrierFSK2.setValue(settings_json["maxFSK2"])
-    #             self.ui.minCarrierFSK2.setValue(settings_json["minFSK2"])
-    #             self.ui.maxCarrierPSK.setValue(settings_json["maxPSK"])
-    #             self.ui.minCarrierPSK.setValue(settings_json["minPSK"])
-
-    #             self.ui.btn_AplicarASK.click()
-    #             self.ui.btn_AplicarFSK1.click()
-    #             self.ui.btn_AplicarFSK2.click()
-    #             self.ui.btn_AplicarPSK.click()
-    #         else:
-    #             print("Empty File")
-    #     else:
-    #         print("File Not Found")
         
     ## EVENT ==> MOUSE DOUBLE CLICK
     ########################################################################
@@ -289,7 +236,35 @@ class MainWindow(QMainWindow):
     ## START ==> SIMULACION
     ############################## ---/--/--- ##############################
 
-    
+    def generarSimu(self):
+        # datos = simu.Simulacion()
+        # nrovisit, problluvia, probhuracan, perpot = datos
+        nrovisit, problluvia, probhuracan, perpot = [10500, 0.85, 0.1, 98213]
+        self.ui.visitantes_label.setText(str(nrovisit) + " visitantes")
+        self.ui.lluvia_label.setText("{:.2f}".format(problluvia * 100) + "%")
+        self.ui.huracan_label.setText("{:.2f}".format(probhuracan * 100) + "%")
+        self.ui.perdidas_label.setText("$" + str(perpot))
+
+        if problluvia <= 0.25:
+            self.ui.lluvia_label.setStyleSheet("color: #FFFFFF")
+            self.ui.lluvia_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/sol24.png) 0 0 0 0 stretch stretch;")
+        elif problluvia <= 0.75:
+            self.ui.lluvia_label.setStyleSheet("color: #FBC400")
+            self.ui.lluvia_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/sol-lluvia24.png) 0 0 0 0 stretch stretch;")
+        else:
+            self.ui.lluvia_label.setStyleSheet("color: #FF0000")
+            self.ui.lluvia_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/lluvia24.png) 0 0 0 0 stretch stretch;")
+
+        if probhuracan <= 0.20:
+            self.ui.huracan_label.setStyleSheet("color: #FFFFFF")
+            self.ui.huracan_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/sol-viento24.png) 0 0 0 0 stretch stretch;")
+        elif probhuracan <= 0.5:
+            self.ui.huracan_label.setStyleSheet("color: #FBC400")
+            self.ui.huracan_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/tornado24.png) 0 0 0 0 stretch stretch;")
+        else:
+            self.ui.huracan_label.setStyleSheet("color: #FF0000")
+            self.ui.huracan_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/tornado24.png) 0 0 0 0 stretch stretch;")
+        
 
     ########################################################################
     ## END ==> SIMULACION
