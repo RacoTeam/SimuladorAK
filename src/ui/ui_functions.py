@@ -45,7 +45,10 @@ class UIFunctions(MainWindow):
             self.ui.horizontalLayout.setContentsMargins(0, 0, 0, 0)
             self.ui.btn_maximize_restore.setToolTip("Restore")
             self.ui.btn_maximize_restore.setIcon(QtGui.QIcon(u":/16x16/icons/16x16/cil-window-restore.png"))
-            self.ui.frame_top_btns.setStyleSheet("background-color: rgb(27, 29, 35)")
+            if UIFunctions.theme == "default":
+                self.ui.frame_top_btns.setStyleSheet("background-color: rgb(27, 29, 35)")
+            elif UIFunctions.theme == "ak":
+                self.ui.frame_top_btns.setStyleSheet("background-color: rgb(43, 112, 74)")
             self.ui.frame_size_grip.hide()
         else:
             GLOBAL_STATE = 0
@@ -54,7 +57,10 @@ class UIFunctions(MainWindow):
             self.ui.horizontalLayout.setContentsMargins(10, 10, 10, 10)
             self.ui.btn_maximize_restore.setToolTip("Maximize")
             self.ui.btn_maximize_restore.setIcon(QtGui.QIcon(u":/16x16/icons/16x16/cil-window-maximize.png"))
-            self.ui.frame_top_btns.setStyleSheet("background-color: rgba(27, 29, 35, 200)")
+            if UIFunctions.theme == "default":
+                self.ui.frame_top_btns.setStyleSheet("background-color: rgba(27, 29, 35, 200)")
+            elif UIFunctions.theme == "ak":
+                self.ui.frame_top_btns.setStyleSheet("background-color: rgba(43, 112, 74, 200)")
             self.ui.frame_size_grip.show()
 
 
