@@ -237,9 +237,9 @@ class MainWindow(QMainWindow):
     ############################## ---/--/--- ##############################
 
     def generarSimu(self):
-        # datos = simu.Simulacion()
-        # nrovisit, problluvia, probhuracan, perpot = datos
-        nrovisit, problluvia, probhuracan, perpot = [10500, 0.85, 0.1, 98213]
+        datos = simu.Simulacion()
+        nrovisit, problluvia, probhuracan, perpot = datos
+        # nrovisit, problluvia, probhuracan, perpot = [10500, 0.85, 0.1, 98213]
         self.ui.visitantes_label.setText(str(nrovisit) + " visitantes")
         self.ui.lluvia_label.setText("{:.2f}".format(problluvia * 100) + "%")
         self.ui.huracan_label.setText("{:.2f}".format(probhuracan * 100) + "%")
