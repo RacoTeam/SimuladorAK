@@ -21,6 +21,8 @@ class MainWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
+        self.fecha = ""
+
         ## PRINT ==> SYSTEM
         print('System: ' + platform.system())
         print('Version: ' +platform.release())
@@ -74,7 +76,7 @@ class MainWindow(QMainWindow):
         ## USER ICON ==> SHOW HIDE
         UIFunctions.userIcon(self, "AK", "url(:/24x24/icons/24x24/logoak24.png)", True)
         UIFunctions.labelCredits(self, "Desarrollado por: Lucas Depetris, Santiago Figueroa, Emanuel Haro y Maribel Masucci")
-        UIFunctions.labelVersion(self, "v0.5")
+        UIFunctions.labelVersion(self, "v1.1")
         ## ==> END ##
 
         ## ==> MOVE WINDOW / MAXIMIZE / RESTORE
@@ -107,23 +109,10 @@ class MainWindow(QMainWindow):
         ## START - CONNECTORS // Conectan botones, deslizadores y entradas con funciones (lambda) y acciones
         ############################## ---/--/--- ##############################
 
-        # self.ui.Btn_helpASK.clicked.connect(lambda: self.helpPage("ask"))
-        # self.ui.Btn_helpFSK.clicked.connect(lambda: self.helpPage("fsk"))
-        # self.ui.Btn_helpPSK.clicked.connect(lambda: self.helpPage("psk"))
-        # self.ui.Btn_helpSettings.clicked.connect(lambda: self.helpPage("settings"))
-        # self.ui.Btn_helpMain.clicked.connect(lambda: self.helpPage("main"))
-
         self.ui.BtnMenuSimu.clicked.connect(self.Button)
         self.ui.BtnSimular.clicked.connect(self.generarSimu)
         self.ui.calendarWidget.clicked.connect(lambda: self.ui.dia_label.setText("Día " + self.ui.calendarWidget.selectedDate().toString("dd/MM/yyyy")))
-        # self.ui.Btn_FSK.clicked.connect(self.Button)
-        # self.ui.Btn_PSK.clicked.connect(self.Button)
-        
-        # # SETTINGS
-        # self.ui.btn_AplicarASK.clicked.connect(lambda: self.settingsChanged(self.ui.maxCarrierASK, self.ui.minCarrierASK, self.ui.sliderASK, self.ui.carrierFreqInputASK, self.ui.label_maxASK, self.ui.label_minASK))
-        # self.ui.btn_AplicarFSK1.clicked.connect(lambda: self.settingsChanged(self.ui.maxCarrierFSK1, self.ui.minCarrierFSK1, self.ui.sliderFSK1, self.ui.carrierFreq1InputFSK, self.ui.label_maxFSK_1, self.ui.label_minFSK_1))
-        # self.ui.btn_AplicarFSK2.clicked.connect(lambda: self.settingsChanged(self.ui.maxCarrierFSK2, self.ui.minCarrierFSK2, self.ui.sliderFSK2, self.ui.carrierFreq2InputFSK, self.ui.label_maxFSK_2, self.ui.label_minFSK_2))
-        # self.ui.btn_AplicarPSK.clicked.connect(lambda: self.settingsChanged(self.ui.maxCarrierPSK, self.ui.minCarrierPSK, self.ui.sliderPSK, self.ui.carrierFreqInputPSK, self.ui.label_maxPSK, self.ui.label_minPSK))
+        self.ui.calendarWidget.clicked.connect(lambda: self.fechaCambiada(self.ui.calendarWidget.selectedDate().toString("dd/MM/yyyy")))
 
         ########################################################################
         ## END - CONNECTORS
@@ -236,29 +225,44 @@ class MainWindow(QMainWindow):
     ## START ==> SIMULACION
     ############################## ---/--/--- ##############################
 
+    def fechaCambiada(self, fecha: str):
+        # print("self.fecha: " + self.fecha)
+        # print("fecha: " + fecha)
+        if self.fecha != fecha:
+            self.ui.BtnSimular.setEnabled(True)
+            self.fecha = fecha
+
     def generarSimu(self):
+        self.ui.BtnSimular.setEnabled(False)
         datos = simu.Simulacion()
-        nrovisit, problluvia, probhuracan, perpot = datos
+        nrovisit, problluvia, tipolluvia, probhuracan, perpot = datos
         # nrovisit, problluvia, probhuracan, perpot = [10500, 0.85, 0.1, 98213]
         self.ui.visitantes_label.setText(str(nrovisit) + " visitantes")
         self.ui.lluvia_label.setText("{:.2f}".format(problluvia * 100) + "%")
         self.ui.huracan_label.setText("{:.2f}".format(probhuracan * 100) + "%")
         self.ui.perdidas_label.setText("$" + str(perpot))
 
-        if problluvia <= 0.25:
+        if tipolluvia == "NO LLUEVE":
             self.ui.lluvia_label.setStyleSheet("color: #FFFFFF")
             self.ui.lluvia_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/sol24.png) 0 0 0 0 stretch stretch;")
-        elif problluvia <= 0.75:
+            self.ui.label_tipo_lluvia.setText("No llueve")
+        elif tipolluvia == "LLUVIA LIGERA":
             self.ui.lluvia_label.setStyleSheet("color: #FBC400")
             self.ui.lluvia_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/sol-lluvia24.png) 0 0 0 0 stretch stretch;")
-        else:
+            self.ui.label_tipo_lluvia.setText("Lluvia Ligera")
+        elif tipolluvia == "LLUVIA INTENSA":
+            self.ui.lluvia_label.setStyleSheet("color: #ffa149")
+            self.ui.lluvia_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/lluvia24.png) 0 0 0 0 stretch stretch;")
+            self.ui.label_tipo_lluvia.setText("Lluvia Intensa")
+        elif tipolluvia == "LLUVIA MUY ABUNDANTE":
             self.ui.lluvia_label.setStyleSheet("color: #FF0000")
             self.ui.lluvia_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/lluvia24.png) 0 0 0 0 stretch stretch;")
+            self.ui.label_tipo_lluvia.setText("Lluvia Abundante")
 
-        if probhuracan <= 0.20:
+        if probhuracan <= 0.2:
             self.ui.huracan_label.setStyleSheet("color: #FFFFFF")
             self.ui.huracan_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/sol-viento24.png) 0 0 0 0 stretch stretch;")
-        elif probhuracan <= 0.5:
+        elif probhuracan <= 0.8:
             self.ui.huracan_label.setStyleSheet("color: #FBC400")
             self.ui.huracan_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/tornado24.png) 0 0 0 0 stretch stretch;")
         else:

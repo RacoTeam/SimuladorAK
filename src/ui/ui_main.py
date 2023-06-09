@@ -1035,6 +1035,13 @@ class Ui_MainWindow(object):
 "QPushButton:pressed {    \n"
 "    background-color: rgb(37, 138, 26);\n"
 "    border: 2px solid rgb(60, 196, 72);\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"border: 2px solid rgba(56, 170, 72, 0.5);\n"
+"border-radius: 12px;\n"
+"background-color: #EAEAEA;\n"
+"color: #AAAAAA;\n"
 "}")
         self.BtnSimular.setIconSize(QtCore.QSize(20, 20))
         self.BtnSimular.setFlat(False)
@@ -1219,7 +1226,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_29.addWidget(self.label_13)
         self.verticalLayout_18.addWidget(self.frame_8)
         self.frame_40 = QtWidgets.QFrame(self.frame_37)
-        self.frame_40.setMaximumSize(QtCore.QSize(16777215, 90))
+        self.frame_40.setMaximumSize(QtCore.QSize(16777215, 95))
         self.frame_40.setStyleSheet("QFrame#frame_40 {\n"
 "    background: rgba(205, 229, 249, 0.85);\n"
 "    border: 0px solid ;\n"
@@ -1234,7 +1241,8 @@ class Ui_MainWindow(object):
         self.verticalLayout_21.setSpacing(4)
         self.verticalLayout_21.setObjectName("verticalLayout_21")
         self.frame_46 = QtWidgets.QFrame(self.frame_40)
-        self.frame_46.setMinimumSize(QtCore.QSize(300, 20))
+        self.frame_46.setMinimumSize(QtCore.QSize(300, 38))
+        self.frame_46.setMaximumSize(QtCore.QSize(300, 16777215))
         self.frame_46.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.frame_46.setAutoFillBackground(False)
         self.frame_46.setStyleSheet("QFrame {\n"
@@ -1250,21 +1258,21 @@ class Ui_MainWindow(object):
         self.horizontalLayout_32.setContentsMargins(6, 2, 6, 2)
         self.horizontalLayout_32.setSpacing(0)
         self.horizontalLayout_32.setObjectName("horizontalLayout_32")
-        self.label_23 = QtWidgets.QLabel(self.frame_46)
-        self.label_23.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.label_tipo_lluvia = QtWidgets.QLabel(self.frame_46)
+        self.label_tipo_lluvia.setMaximumSize(QtCore.QSize(175, 16777215))
         font = QtGui.QFont()
         font.setFamily("Satoshi Black")
         font.setPointSize(14)
         font.setBold(True)
         font.setWeight(75)
-        self.label_23.setFont(font)
-        self.label_23.setStyleSheet("color: #ffffff;")
-        self.label_23.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.label_23.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.label_23.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_23.setObjectName("label_23")
-        self.horizontalLayout_32.addWidget(self.label_23)
-        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.label_tipo_lluvia.setFont(font)
+        self.label_tipo_lluvia.setStyleSheet("color: #ffffff;")
+        self.label_tipo_lluvia.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.label_tipo_lluvia.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.label_tipo_lluvia.setAlignment(QtCore.Qt.AlignCenter)
+        self.label_tipo_lluvia.setObjectName("label_tipo_lluvia")
+        self.horizontalLayout_32.addWidget(self.label_tipo_lluvia)
+        spacerItem3 = QtWidgets.QSpacerItem(176, 20, QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_32.addItem(spacerItem3)
         self.lluvia_label = QtWidgets.QLabel(self.frame_46)
         font = QtGui.QFont()
@@ -1291,7 +1299,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout_32.addWidget(self.lluvia_frame)
         self.verticalLayout_21.addWidget(self.frame_46, 0, QtCore.Qt.AlignHCenter)
         self.frame_48 = QtWidgets.QFrame(self.frame_40)
-        self.frame_48.setMinimumSize(QtCore.QSize(300, 20))
+        self.frame_48.setMinimumSize(QtCore.QSize(300, 38))
         self.frame_48.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.frame_48.setAutoFillBackground(False)
         self.frame_48.setStyleSheet("QFrame {\n"
@@ -2925,7 +2933,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         MainWindow.setTabOrder(self.btn_minimize, self.btn_maximize_restore)
         MainWindow.setTabOrder(self.btn_maximize_restore, self.btn_close)
@@ -2949,7 +2957,7 @@ class Ui_MainWindow(object):
         self.label_12.setText(_translate("MainWindow", "Aforo Esperado"))
         self.visitantes_label.setText(_translate("MainWindow", "- visitantes"))
         self.label_13.setText(_translate("MainWindow", "Probabilidades"))
-        self.label_23.setText(_translate("MainWindow", "Lluvia"))
+        self.label_tipo_lluvia.setText(_translate("MainWindow", "Lluvia"))
         self.lluvia_label.setText(_translate("MainWindow", "-"))
         self.label_25.setText(_translate("MainWindow", "Huracán"))
         self.huracan_label.setText(_translate("MainWindow", "-"))

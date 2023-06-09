@@ -1628,7 +1628,7 @@ QPushButton:pressed {
                    <string notr="true">background: transparent;</string>
                   </property>
                   <property name="currentIndex">
-                   <number>0</number>
+                   <number>1</number>
                   </property>
                   <widget class="QWidget" name="page_home">
                    <property name="styleSheet">
@@ -2114,6 +2114,13 @@ QPushButton:hover {
 QPushButton:pressed {	
 	background-color: rgb(37, 138, 26);
 	border: 2px solid rgb(60, 196, 72);
+}
+
+QPushButton:disabled {
+border: 2px solid rgba(56, 170, 72, 0.5);
+border-radius: 12px;
+background-color: #EAEAEA;
+color: #AAAAAA;
 }</string>
                             </property>
                             <property name="text">
@@ -2456,7 +2463,7 @@ border-radius: 29px;
                                   <property name="frameShadow">
                                    <enum>QFrame::Raised</enum>
                                   </property>
-                                  <layout class="QVBoxLayout" name="verticalLayout_40" stretch="">
+                                  <layout class="QVBoxLayout" name="verticalLayout_40">
                                    <property name="spacing">
                                     <number>0</number>
                                    </property>
@@ -2603,7 +2610,7 @@ border-radius: 29px;
                             <property name="maximumSize">
                              <size>
                               <width>16777215</width>
-                              <height>90</height>
+                              <height>95</height>
                              </size>
                             </property>
                             <property name="styleSheet">
@@ -2641,7 +2648,13 @@ border-radius: 29px;
                                <property name="minimumSize">
                                 <size>
                                  <width>300</width>
-                                 <height>20</height>
+                                 <height>38</height>
+                                </size>
+                               </property>
+                               <property name="maximumSize">
+                                <size>
+                                 <width>300</width>
+                                 <height>16777215</height>
                                 </size>
                                </property>
                                <property name="layoutDirection">
@@ -2681,10 +2694,10 @@ border-radius: 29px;
                                  <number>2</number>
                                 </property>
                                 <item>
-                                 <widget class="QLabel" name="label_23">
+                                 <widget class="QLabel" name="label_tipo_lluvia">
                                   <property name="maximumSize">
                                    <size>
-                                    <width>100</width>
+                                    <width>175</width>
                                     <height>16777215</height>
                                    </size>
                                   </property>
@@ -2712,7 +2725,7 @@ border-radius: 29px;
                                    <set>Qt::AlignCenter</set>
                                   </property>
                                   <property name="margin">
-                                   <number>0</number>
+                                   <number>-4</number>
                                   </property>
                                  </widget>
                                 </item>
@@ -2721,9 +2734,12 @@ border-radius: 29px;
                                   <property name="orientation">
                                    <enum>Qt::Horizontal</enum>
                                   </property>
+                                  <property name="sizeType">
+                                   <enum>QSizePolicy::Maximum</enum>
+                                  </property>
                                   <property name="sizeHint" stdset="0">
                                    <size>
-                                    <width>40</width>
+                                    <width>176</width>
                                     <height>20</height>
                                    </size>
                                   </property>
@@ -2788,7 +2804,7 @@ border-radius: 29px;
                                <property name="minimumSize">
                                 <size>
                                  <width>300</width>
-                                 <height>20</height>
+                                 <height>38</height>
                                 </size>
                                </property>
                                <property name="layoutDirection">

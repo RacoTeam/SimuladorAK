@@ -52,27 +52,27 @@ def Simulacion():
         MM=Normal(13,6.22)
         
         if MM > 16:
-            TL="'LLUVIA MUY ABUNDANTE'"
+            TL="LLUVIA MUY ABUNDANTE"
         elif MM>7:
-            TL="'LLUVIA INTENSA'"
+            TL="LLUVIA INTENSA"
         else:
-            TL="'LLUVIA LIGERA'"
+            TL="LLUVIA LIGERA"
     else:
-        TL="'NO LLUEVE'"       
+        TL="NO LLUEVE"       
     
     u = CongruencialMixto()
     PH=u
-    PL=float("{:.2f}".format(PL))
-    PH=float("{:.2f}".format(PH))
-    GT=float("{:.2f}".format(GT))
-    if u >= 0.80:
+    PL=float("{:.4f}".format(PL))
+    PH=float("{:.4f}".format(PH))
+    GT=float("{:.4f}".format(GT))
+    if u >= 0.20:
         #HAY HURACAN
-        print("Tipó de Lluvia: " + str(TL) + "Probabilidad de lluvias:: " + str(PL) +"Probabilidad de huracanes: " + str(PH) +"Perdidas Potenciales por Cierre: " + str(GT) + "Se sugiere cerrar el parque")
-        return [P,PL,PH,GT]
+        print("\nTipo de Lluvia: " + str(TL) + "\nProbabilidad de lluvias:: " + str(PL) +"\nProbabilidad de huracanes: " + str(PH) +"\nPerdidas Potenciales por Cierre: " + str(GT) + "\nSe sugiere cerrar el parque")
     else:
         #NO HAY HURACAN
-        print("Tipó de Lluvia: " + str(TL) + "Probabilidad de lluvias:: " + str(PL) +"Probabilidad de huracanes: " + str(PH) +"Perdidas Potenciales por Cierre: " + str(GT))
-        return [P,PL,PH,GT]
+        print("\nTipo de Lluvia: " + str(TL) + "\nProbabilidad de lluvias:: " + str(PL) +"\nProbabilidad de huracanes: " + str(PH) +"\nPerdidas Potenciales por Cierre: " + str(GT))
+    
+    return [P,PL,TL,PH,GT]
 
 
 def CongruencialMixto():
@@ -99,7 +99,7 @@ def Normal(m,d):
         sum=sum+u
         i=i+1
     x = d * (sum-6) + m
-    print("llegue hasta aqui" + str(x))
+    # print("llegue hasta aqui" + str(x))
     return x
 
 if __name__ == "__main__":
