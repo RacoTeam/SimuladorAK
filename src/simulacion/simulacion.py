@@ -10,7 +10,7 @@ import msvcrt
 import random
 
 def Simulacion():
-    dias = 31
+    # dias = 31
     u = CongruencialMixto()
     P = int(20000 + 10000 * u)
 
@@ -41,8 +41,6 @@ def Simulacion():
         GT += G
         i += 1 
     print("GT: " + str(GT))
-
-    # TODO: Hacer segundo while para adelante
 
     u = CongruencialMixto()
     PL=u

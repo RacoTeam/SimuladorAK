@@ -10,6 +10,11 @@
     <file>icons/bigSize/sigma-logo.png</file>
     <file>icons/bigSize/treeak.png</file>
   </qresource>
+  <qresource prefix="fonts">
+    <file>fonts/Satoshi-Black.ttf</file>
+    <file>fonts/Satoshi-Light.ttf</file>
+    <file>fonts/Satoshi-Regular.ttf</file>
+  </qresource>
   <qresource prefix="16x16">
     <file>icons/16x16/cil-3d.png</file>
     <file>icons/16x16/cil-4k.png</file>

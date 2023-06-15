@@ -15,6 +15,9 @@ from app_modules import *
 # Simulacion
 import simulacion.simulacion as simu
 
+import locale
+locale.setlocale(locale.LC_ALL, 'es_ES')
+
 class MainWindow(QMainWindow):
     def __init__(self):
         QMainWindow.__init__(self)
@@ -36,7 +39,7 @@ class MainWindow(QMainWindow):
         ## ==> END ##
 
         ## SET ==> WINDOW TITLE
-        self.setWindowTitle('Animal Kingdom Simulator')
+        self.setWindowTitle('Simulador Animal Kingdom')
         UIFunctions.labelTitle(self, 'Animal Kingdom Simulator')
         UIFunctions.labelDescription(self, 'Seleccione una opción')
         ## ==> END ##
@@ -76,7 +79,7 @@ class MainWindow(QMainWindow):
         ## USER ICON ==> SHOW HIDE
         UIFunctions.userIcon(self, "AK", "url(:/24x24/icons/24x24/logoak24.png)", True)
         UIFunctions.labelCredits(self, "Desarrollado por: Lucas Depetris, Santiago Figueroa, Emanuel Haro y Maribel Masucci")
-        UIFunctions.labelVersion(self, "v1.1")
+        UIFunctions.labelVersion(self, "v1.2")
         ## ==> END ##
 
         ## ==> MOVE WINDOW / MAXIMIZE / RESTORE
@@ -237,10 +240,10 @@ class MainWindow(QMainWindow):
         datos = simu.Simulacion()
         nrovisit, problluvia, tipolluvia, probhuracan, perpot = datos
         # nrovisit, problluvia, probhuracan, perpot = [10500, 0.85, 0.1, 98213]
-        self.ui.visitantes_label.setText(str(nrovisit) + " visitantes")
+        self.ui.visitantes_label.setText(locale.format_string("%.0f", nrovisit, grouping=True) + " visitantes")
         self.ui.lluvia_label.setText("{:.2f}".format(problluvia * 100) + "%")
         self.ui.huracan_label.setText("{:.2f}".format(probhuracan * 100) + "%")
-        self.ui.perdidas_label.setText("$" + str(perpot))
+        self.ui.perdidas_label.setText("$" + locale.format_string("%.2f", perpot, grouping=True))
 
         if tipolluvia == "NO LLUEVE":
             self.ui.lluvia_label.setStyleSheet("color: #FFFFFF")
@@ -262,12 +265,15 @@ class MainWindow(QMainWindow):
         if probhuracan <= 0.2:
             self.ui.huracan_label.setStyleSheet("color: #FFFFFF")
             self.ui.huracan_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/sol-viento24.png) 0 0 0 0 stretch stretch;")
+            self.ui.label_25.setText("No Huracán")
         elif probhuracan <= 0.8:
             self.ui.huracan_label.setStyleSheet("color: #FBC400")
             self.ui.huracan_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/tornado24.png) 0 0 0 0 stretch stretch;")
+            self.ui.label_25.setText("Huracán")
         else:
             self.ui.huracan_label.setStyleSheet("color: #FF0000")
             self.ui.huracan_frame.setStyleSheet("border-image: url(:/24x24/icons/24x24/tornado24.png) 0 0 0 0 stretch stretch;")
+            self.ui.label_25.setText("Huracán")
         
 
     ########################################################################
@@ -283,10 +289,10 @@ class MainWindow(QMainWindow):
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-    QtGui.QFontDatabase.addApplicationFont('./ui/fonts/Satoshi-Black.ttf')
-    QtGui.QFontDatabase.addApplicationFont('./ui/fonts/segoeui.ttf')
-    QtGui.QFontDatabase.addApplicationFont('./ui/fonts/Satoshi-Light.ttf')
-    QtGui.QFontDatabase.addApplicationFont('./ui/fonts/Satoshi-Regular.ttf')
+    QtGui.QFontDatabase.addApplicationFont(':/fonts/fonts/Satoshi-Black.ttf')
+    # QtGui.QFontDatabase.addApplicationFont('./ui/fonts/segoeui.ttf')
+    QtGui.QFontDatabase.addApplicationFont(':/fonts/fonts/Satoshi-Light.ttf')
+    QtGui.QFontDatabase.addApplicationFont(':/fonts/fonts/Satoshi-Regular.ttf')
     font = QFont("Satoshi Regular")
     app.setFont(font, "*") # type: ignore
     window = MainWindow()

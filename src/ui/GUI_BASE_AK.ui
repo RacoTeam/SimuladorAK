@@ -1093,9 +1093,9 @@ background-repeat: no-repeat;
                       <font>
                        <family>Satoshi Black</family>
                        <pointsize>16</pointsize>
-                       <weight>75</weight>
+                       <weight>50</weight>
                        <italic>false</italic>
-                       <bold>true</bold>
+                       <bold>false</bold>
                        <underline>false</underline>
                        <strikeout>false</strikeout>
                        <kerning>true</kerning>
@@ -1106,6 +1106,7 @@ background-repeat: no-repeat;
                      </property>
                      <property name="styleSheet">
                       <string notr="true">background: transparent;
+font: url(:/fonts/fonts/Satoshi-Black.ttf)
 </string>
                      </property>
                      <property name="text">
@@ -2697,7 +2698,7 @@ border-radius: 29px;
                                  <widget class="QLabel" name="label_tipo_lluvia">
                                   <property name="maximumSize">
                                    <size>
-                                    <width>175</width>
+                                    <width>180</width>
                                     <height>16777215</height>
                                    </size>
                                   </property>
@@ -2847,7 +2848,7 @@ border-radius: 29px;
                                  <widget class="QLabel" name="label_25">
                                   <property name="maximumSize">
                                    <size>
-                                    <width>100</width>
+                                    <width>150</width>
                                     <height>16777215</height>
                                    </size>
                                   </property>
