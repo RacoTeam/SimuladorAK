@@ -4,9 +4,9 @@
 
 # from main import *
 
-import sys
-import math
-import msvcrt
+# import sys
+# import math
+# import msvcrt
 import random
 
 def Simulacion():
@@ -74,9 +74,6 @@ def Simulacion():
 
 
 def CongruencialMixto():
-
-    listaNrosAleatorios = []
-    i=0
     
     semilla = random.randint(1, 100)
     a = random.randint(1, 100)

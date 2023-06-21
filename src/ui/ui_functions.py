@@ -235,7 +235,7 @@ class UIFunctions(MainWindow):
             self.ui.btn_toggle_menu.setStyleSheet(self.ui.btn_toggle_menu.styleSheet().replace("background-color: #195B47;", "background-color: rgb(27, 29, 35);"))
             
             self.ui.label_user_icon.setStyleSheet(self.ui.label_user_icon.styleSheet().replace("background-color: rgb(44, 60, 47);", "background-color: rgb(44, 49, 60);"))
-            self.ui.label_user_icon.setStyleSheet(self.ui.label_user_icon.styleSheet().replace("border: 5px solid rgb(25, 91, 42);;", "border: 5px solid rgb(39, 44, 54);"))
+            self.ui.label_user_icon.setStyleSheet(self.ui.label_user_icon.styleSheet().replace("border: 5px solid rgb(25, 91, 42);", "border: 5px solid rgb(39, 44, 54);"))
         elif theme == "ak":
             self.ui.frame_top_btns.setStyleSheet("background-color: rgb(43, 112, 74);")
             self.ui.frame_left_menu.setStyleSheet("background-color: rgb(63, 137, 75);")

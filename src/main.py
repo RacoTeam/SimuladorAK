@@ -40,7 +40,7 @@ class MainWindow(QMainWindow):
 
         ## SET ==> WINDOW TITLE
         self.setWindowTitle('Simulador Animal Kingdom')
-        UIFunctions.labelTitle(self, 'Animal Kingdom Simulator')
+        UIFunctions.labelTitle(self, 'Simulador Animal Kingdom')
         UIFunctions.labelDescription(self, 'Seleccione una opción')
         ## ==> END ##
 
@@ -77,9 +77,9 @@ class MainWindow(QMainWindow):
         ## ==> END ##
 
         ## USER ICON ==> SHOW HIDE
-        UIFunctions.userIcon(self, "AK", "url(:/24x24/icons/24x24/logoak24.png)", True)
+        UIFunctions.userIcon(self, "Sarah Riles", "url(:/bigSize/icons/bigSize/sarahsmall.jpg)", True)
         UIFunctions.labelCredits(self, "Desarrollado por: Lucas Depetris, Santiago Figueroa, Emanuel Haro y Maribel Masucci")
-        UIFunctions.labelVersion(self, "v1.2")
+        UIFunctions.labelVersion(self, "v1.3")
         ## ==> END ##
 
         ## ==> MOVE WINDOW / MAXIMIZE / RESTORE
@@ -114,7 +114,6 @@ class MainWindow(QMainWindow):
 
         self.ui.BtnMenuSimu.clicked.connect(self.Button)
         self.ui.BtnSimular.clicked.connect(self.generarSimu)
-        self.ui.calendarWidget.clicked.connect(lambda: self.ui.dia_label.setText("Día " + self.ui.calendarWidget.selectedDate().toString("dd/MM/yyyy")))
         self.ui.calendarWidget.clicked.connect(lambda: self.fechaCambiada(self.ui.calendarWidget.selectedDate().toString("dd/MM/yyyy")))
 
         ########################################################################
@@ -233,7 +232,14 @@ class MainWindow(QMainWindow):
         # print("fecha: " + fecha)
         if self.fecha != fecha:
             self.ui.BtnSimular.setEnabled(True)
+            self.ui.dia_label.setText("Día " + self.ui.calendarWidget.selectedDate().toString("dd/MM/yyyy"))
             self.fecha = fecha
+            self.ui.visitantes_label.setText("- visitantes")
+            self.ui.lluvia_label.setText("-%")
+            self.ui.huracan_label.setText("-%")
+            self.ui.perdidas_label.setText("$-")
+        # else:
+            # self.ui.BtnSimular.setEnabled(False)
 
     def generarSimu(self):
         self.ui.BtnSimular.setEnabled(False)
@@ -241,8 +247,8 @@ class MainWindow(QMainWindow):
         nrovisit, problluvia, tipolluvia, probhuracan, perpot = datos
         # nrovisit, problluvia, probhuracan, perpot = [10500, 0.85, 0.1, 98213]
         self.ui.visitantes_label.setText(locale.format_string("%.0f", nrovisit, grouping=True) + " visitantes")
-        self.ui.lluvia_label.setText("{:.2f}".format(problluvia * 100) + "%")
-        self.ui.huracan_label.setText("{:.2f}".format(probhuracan * 100) + "%")
+        self.ui.lluvia_label.setText(locale.format_string("%.2f", problluvia * 100, grouping=True) + "%")
+        self.ui.huracan_label.setText(locale.format_string("%.2f", probhuracan * 100, grouping=True) + "%")
         self.ui.perdidas_label.setText("$" + locale.format_string("%.2f", perpot, grouping=True))
 
         if tipolluvia == "NO LLUEVE":

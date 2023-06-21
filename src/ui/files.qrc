@@ -1,11 +1,13 @@
 <RCC>
   <qresource prefix="bigSize">
+    <file>icons/bigSize/sarah.jpg</file>
     <file>icons/bigSize/cil-ask.png</file>
     <file>icons/bigSize/cil-fsk.png</file>
     <file>icons/bigSize/cil-psk.png</file>
     <file>icons/bigSize/expeve.png</file>
     <file>icons/bigSize/logoak.png</file>
     <file>icons/bigSize/logoakbig.png</file>
+    <file>icons/bigSize/sarahsmall.jpg</file>
     <file>icons/bigSize/logodak.png</file>
     <file>icons/bigSize/sigma-logo.png</file>
     <file>icons/bigSize/treeak.png</file>

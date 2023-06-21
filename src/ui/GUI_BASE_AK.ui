@@ -941,6 +941,9 @@ QSlider::handle:vertical:pressed {
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="toolTip">
+                <string>Presione para abrir barra lateral</string>
+               </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton {
 	/*	background-image: url(:/bigSize/icons/bigSize/logoakbig.png);*/
@@ -1555,6 +1558,9 @@ QPushButton:pressed {
                     <pointsize>12</pointsize>
                    </font>
                   </property>
+                  <property name="toolTip">
+                   <string>Sarah Riles</string>
+                  </property>
                   <property name="styleSheet">
                    <string notr="true">QLabel {
 	border-radius: 30px;
@@ -1629,7 +1635,7 @@ QPushButton:pressed {
                    <string notr="true">background: transparent;</string>
                   </property>
                   <property name="currentIndex">
-                   <number>1</number>
+                   <number>0</number>
                   </property>
                   <widget class="QWidget" name="page_home">
                    <property name="styleSheet">
@@ -2030,6 +2036,9 @@ border-radius: 5px;
                             <property name="cursor">
                              <cursorShape>ArrowCursor</cursorShape>
                             </property>
+                            <property name="whatsThis">
+                             <string>Seleccione una fecha a simular</string>
+                            </property>
                             <property name="styleSheet">
                              <string notr="true">QCalendarWidget {
     background-color: #FFFFFF; /* Establece el color de fondo claro */
@@ -2095,6 +2104,12 @@ QCalendarWidget QTableView {
                               <strikeout>false</strikeout>
                               <kerning>true</kerning>
                              </font>
+                            </property>
+                            <property name="toolTip">
+                             <string>Presione para simular el día seleccionado</string>
+                            </property>
+                            <property name="whatsThis">
+                             <string/>
                             </property>
                             <property name="autoFillBackground">
                              <bool>false</bool>
@@ -2492,6 +2507,12 @@ border-radius: 29px;
                                     <weight>75</weight>
                                     <bold>true</bold>
                                    </font>
+                                  </property>
+                                  <property name="toolTip">
+                                   <string>Visitantes esperados</string>
+                                  </property>
+                                  <property name="whatsThis">
+                                   <string/>
                                   </property>
                                   <property name="styleSheet">
                                    <string notr="true">color: #ffffff;</string>
@@ -3169,6 +3190,9 @@ padding: 4px;
                                     <weight>75</weight>
                                     <bold>true</bold>
                                    </font>
+                                  </property>
+                                  <property name="toolTip">
+                                   <string>Perdidas potenciales en caso de cierre</string>
                                   </property>
                                   <property name="styleSheet">
                                    <string notr="true">color: #ffffff;</string>
